@@ -1,0 +1,449 @@
+BEGIN
+DBMS_OUTPUT.PUT_LINE('Bhanu');
+END; ---Bhanu
+//
+
+DECLARE
+my_name VARCHAR2(10) := 'Bhanu';
+title CHAR(10) ;
+   
+
+BEGIN
+title := 'Priya';
+   
+DBMS_OUTPUT.PUT_LINE(my_name ||' '|| title) ;
+END; -----Bhanu Priya
+//
+
+DECLARE
+a INTEGER:= 10;
+b NUMBER := 12;
+c NUMBER(3,1):=10.5;
+d DATE DEFAULT SYSDATE;
+e DATE := '01-AUG-23';
+BEGIN    
+DBMS_OUTPUT.PUT_LINE(a||' '||b||' '||c ||' '||d||' '||e) ;
+END; ---10 12 10.5 08-APR-23 01-AUG-23
+//
+DECLARE
+a INTEGER:= 10;
+b NUMBER := 12;
+c NUMBER(3,1):=10.5;
+d DATE DEFAULT SYSDATE;
+G TIMESTAMP :='01-AUG-23 08:18:00';
+e DATE := '01-AUG-23 ';
+BEGIN    
+DBMS_OUTPUT.PUT_LINE(a||' '||b||' '||c ||' '||d||' '||e||' '||G) ;
+END;---10 12 10.5 08-APR-23 01-AUG-23 01-AUG-23 08.18.00.000000 AM
+//
+
+DECLARE
+a INTEGER:= 10;
+b  CONSTANT NUMBER  := 12;
+c NUMBER(3,1):=10.5;
+d DATE DEFAULT SYSDATE;
+G TIMESTAMP DEFAULT SYSDATE;
+e DATE := '01-AUG-23 ';
+BEGIN  
+a := 15;
+b:= 18;
+DBMS_OUTPUT.PUT_LINE(a||' '||b||' '||c ||' '||d||' '||e||' '||G) ;
+END; ---'B' cannot be used as an assignment target
+//
+DECLARE
+a INTEGER:= 10;
+b  CONSTANT NUMBER  := 12;
+c NUMBER(3,1):=10.5;
+d DATE DEFAULT SYSDATE;
+G TIMESTAMP DEFAULT SYSDATE;
+e DATE := '01-AUG-23 ';
+BEGIN  
+a := 15;
+
+DBMS_OUTPUT.PUT_LINE(a||' '||b||' '||c ||' '||d||' '||e||' '||G) ;
+END;---15 12 10.5 08-APR-23 01-AUG-23 08-APR-23 09.46.56.000000 AM
+//
+
+DECLARE
+a INTEGER ;
+b  CONSTANT NUMBER  := 12;
+c NUMBER(3,1):=10.5;
+d DATE DEFAULT SYSDATE;
+G TIMESTAMP DEFAULT SYSDATE;
+e DATE := '01-AUG-23 ';
+BEGIN  
+a := 15;
+
+DBMS_OUTPUT.PUT_LINE(a||' '||b||' '||c ||' '||d||' '||e||' '||G) ;
+END; ---15 12 10.5 08-APR-23 01-AUG-23 08-APR-23 09.48.33.000000 AM
+//
+
+BASIC LOOP
+
+DECLARE
+a NUMBER :=10;
+BEGIN  
+LOOP
+DBMS_OUTPUT.PUT_LINE(a);
+a := a+10;
+ IF a >50 THEN EXIT;
+END IF;
+END LOOP;
+
+END;
+//
+
+OR
+
+DECLARE
+a NUMBER :=10;
+BEGIN  
+LOOP
+DBMS_OUTPUT.PUT_LINE(a);
+a := a+10;
+EXIT  WHEN a>50;
+END LOOP;
+
+END;
+ ---Statement processed.
+10
+20
+30
+40
+50
+//
+
+#WHILE LOOP
+DECLARE
+a INTEGER :=10;
+BEGIN
+WHILE a>50
+LOOP
+DBMS_OUTPUT.PUT_LINE(a);
+a := a+10;
+END LOOP;
+END; --- Output not printed because loop not executed
+//
+DECLARE
+a INTEGER :=10;
+BEGIN
+WHILE a<50
+LOOP
+DBMS_OUTPUT.PUT_LINE(a);
+a := a+10;
+END LOOP;
+END;---
+10
+20
+30
+40
+//
+#FORLOOP
+
+DECLARE
+a INTEGER :=10;
+b NUMBER;
+BEGIN
+FOR b IN 1 ..5
+LOOP
+
+DBMS_OUTPUT.PUT_LINE(a*b);
+
+END LOOP;
+END;----
+10
+20
+30
+40
+50
+//
+OR
+
+DECLARE
+a INTEGER :=10;
+b NUMBER;
+BEGIN
+FOR b IN 1 ..5
+LOOP
+a:=b*10;
+DBMS_OUTPUT.PUT_LINE(a);
+END LOOP;
+END;
+//
+#MOD OPRETOR
+
+DECLARE
+a INTEGER :=10;
+b NUMBER;
+BEGIN
+IF  MOD(a,2)=0 THEN
+    DBMS_OUTPUT.PUT_LINE(a);
+ELSE
+    DBMS_OUTPUT.PUT_LINE(a+1);
+END IF;
+   
+END;
+//
+#NESTED IF
+DECLARE
+a INTEGER :=10;
+b NUMBER := 9;
+BEGIN
+IF  MOD(a,2)=0 THEN
+    DBMS_OUTPUT.PUT_LINE(a);
+IF b>5 THEN
+     DBMS_OUTPUT.PUT_LINE(b);
+END IF;    
+END IF;
+   
+END;
+//
+DECLARE
+a INTEGER :=10;
+b NUMBER := 9;
+BEGIN
+IF  MOD(a,2)=2 THEN
+    DBMS_OUTPUT.PUT_LINE(a);
+
+ELSIF b>10 THEN
+    DBMS_OUTPUT.PUT_LINE(b);
+ELSE
+    DBMS_OUTPUT.PUT_LINE(b+a);
+END IF;
+END;
+//
+# CASE  1st type
+
+DECLARE
+a INTEGER :=10;
+b NUMBER := 9;
+BEGIN
+CASE
+WHEN  MOD(a,2)=1 THEN
+    DBMS_OUTPUT.PUT_LINE(a);
+WHEN b<>11 THEN
+     DBMS_OUTPUT.PUT_LINE(b);
+WHEN a>5 THEN
+    DBMS_OUTPUT.PUT_LINE(a/b);
+END CASE;
+\\
+# CASE 2nd type
+DECLARE
+a INTEGER :=10;
+BEGIN
+CASE a
+WHEN 10 THEN
+    DBMS_OUTPUT.PUT_LINE(11);
+WHEN 11 THEN
+    DBMS_OUTPUT.PUT_LINE(12);
+END CASE;
+END; ---11
+//
+#ANCHAR DECLARATION
+=> %TYPE(is use for scalar datatype and use to store one row one column)
+
+CREATE TABLE Student(
+    id INTEGER,
+    Name VARCHAR2(10)
+);
+INSERT INTO Student VALUES(100,'abc');
+INSERT INTO Student VALUES(101,'def');
+
+DECLARE
+v_id Student.id%TYPE;
+v_name Student.Name%TYPE;
+BEGIN
+SELECT id, Name INTO v_id,v_name FROM Student WHERE id = 100;
+DBMS_OUTPUT.PUT_LINE(v_id||' '||v_name);
+END;
+//
+=> %ROWTYPE(is use for composit datatype and use to store data of entire row)
+DECLARE
+v_record Student%ROWTYPE;
+BEGIN
+SELECT id, Name INTO v_record FROM Student WHERE id = 100;
+DBMS_OUTPUT.PUT_LINE(v_record.id);
+--DBMS_OUTPUT.PUT_LINE(v_record);
+END;
+
+#NUMRIC FUNCTION
+
+CREATE TABLE Student(
+    id NUMBER(5,2),
+    Name VARCHAR2(10)
+);
+INSERT INTO Student VALUES(100.34,'abc');
+INSERT INTO Student VALUES(101.51,'def');
+INSERT INTO Student VALUES(-101,'def');
+INSERT INTO Student VALUES(-101.5,'def');
+SELECT ABS(id),ROUND(id,0),CEIL(id),FLOOR(id) FROM Student;
+
+#CHAR FUNCTION
+
+CREATE TABLE Student(
+    id NUMBER(5,2),
+    Name VARCHAR2(10)
+);
+INSERT INTO Student VALUES(100.34,'abc');
+INSERT INTO Student VALUES(101.51,'def');
+INSERT INTO Student VALUES(-101,'def');
+INSERT INTO Student VALUES(-101.5,'def');
+INSERT INTO Student VALUES(-101.5,NULL);
+
+SELECT UPPER(Name),LOWER(Name),LENGTH(Name),NVL(Name,'not exist') FROM Student;
+SELECT CONCAT( UPPER(Name),LOWER(Name)) concatvalue,LENGTH(Name),NVL(Name,'not exist') FROM Student;
+SELECT  UPPER(Name)||LOWER(Name),LENGTH(Name),NVL(Name,'not exist') FROM Student;
+SELECT SUBSTR(name,1,2) FROM Student;
+
+# Stored FUNCTION
+
+CREATE OR REPLACE FUNCTION sum_fun(a NUMBER, B NUMBER)
+RETURN NUMBER
+IS
+c NUMBER;
+BEGIN
+c:= a+b;
+RETURN c;
+END;
+/
+DECLARE
+v_sum NUMBER;
+BEGIN
+v_sum:=sum_fun(10,20);
+DBMS_OUTPUT.PUT_LINE(v_sum);
+END;
+OR
+CREATE TABLE Student(
+    id NUMBER(5,2),
+    Name VARCHAR2(10),
+    Salary NUMBER
+);
+INSERT INTO Student VALUES(100.34,'abc',30000);
+INSERT INTO Student VALUES(101.51,'def',20000);
+INSERT INTO Student VALUES(-101,'def',25000);
+INSERT INTO Student VALUES(-101.5,'def',40000);
+CREATE OR REPLACE FUNCTION sum_fun(v_id Student.id%type)
+RETURN NUMBER
+IS
+v_salary NUMBER;
+incr_salary NUMBER;
+BEGIN
+SELECT Salary INTO v_salary FROM Student WHERE id=v_id;
+if v_salary>20000 THEN
+    incr_salary:=v_salary*1.1;
+END IF;
+RETURN incr_salary;
+
+END;
+/
+DECLARE
+v_sum NUMBER;
+BEGIN
+v_sum:=sum_fun(100.34,);
+DBMS_OUTPUT.PUT_LINE(v_sum);
+END;
+
+# Stored Procedure
+
+CREATE TABLE Student(
+    id NUMBER(5,2),
+    Name VARCHAR2(10)
+);
+INSERT INTO Student VALUES(100.34,'abc');
+INSERT INTO Student VALUES(101.51,'def');
+INSERT INTO Student VALUES(-101,'def');
+INSERT INTO Student VALUES(-101.5,'def');
+INSERT INTO Student VALUES(-101.5,NULL);
+
+
+CREATE OR REPLACE PROCEDURE data_insrt(st_id Student.id%TYPE,st_Name Student.Name%TYPE,v_status OUT INTEGER)
+
+IS
+c NUMBER;
+BEGIN
+SELECT COUNT(id) INTO c FROM STUDENT WHERE id=st_id;
+IF c=0THEN
+INSERT INTO Student VALUES(st_id,st_Name);
+v_status:=1;
+ELSE
+v_status:=0;
+END IF;
+END;
+/
+   
+
+DECLARE
+status INTEGER;
+BEGIN
+    data_insrt(104,'Priya',status);
+IF status=1 THEN
+DBMS_OUTPUT.PUT_LINE('Inserted Succesfuly');
+ELSE
+DBMS_OUTPUT.PUT_LINE('Not Inserted');
+END IF;
+   
+END;
+//
+
+#EXPLICTCURSOR
+
+CREATE TABLE Studen(
+    id NUMBER(5,2),
+    Name VARCHAR2(10)
+);
+INSERT INTO Studen VALUES(100.34,'abc');
+INSERT INTO Studen VALUES(101.51,'def');
+INSERT INTO Studen VALUES(-101,'def');
+INSERT INTO Studen VALUES(-101.5,'def');
+INSERT INTO Studen VALUES(-101.5,NULL);
+DECLARE
+CURSOR all_records
+IS
+SELECT* FROM Studen;
+v_id Studen.id%type;
+v_Name Studen.Name%type;
+BEGIN
+OPEN all_records;
+LOOP
+FETCH all_recordS INTO v_id, v_Name;
+EXIT WHEN all_records%NOTFOUND;
+DBMS_OUTPUT.PUT_LINE(v_id||v_Name);
+END LOOP;
+CLOSE all_records;
+END;
+# IMPLICIT CURSOR
+CREATE TABLE Studen(
+    id NUMBER(5,2),
+    Name VARCHAR2(10)
+);
+INSERT INTO Studen VALUES(100.34,'abc');
+INSERT INTO Studen VALUES(101.51,'def');
+INSERT INTO Studen VALUES(-101,'def');
+INSERT INTO Studen VALUES(-101.5,'def');
+INSERT INTO Studen VALUES(-101.5,NULL);
+DECLARE
+v_id Studen.id%type;
+v_Name Studen.Name%type;
+BEGIN
+SELECT id,Name into v_id,v_Name FROM Studen WHERE id=100.34;
+IF SQL%NOTFOUND THEN
+DBMS_OUTPUT.PUT_LINE('Student does not exist');
+ELSE
+DBMS_OUTPUT.PUT_LINE(v_id||v_Name);
+
+END IF;
+END;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
