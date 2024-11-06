@@ -1,0 +1,52 @@
+
+=>Data Types 
+* Character data types
+
+  SQL supports two character data types for storing printable and displayable characters.
+  i>CHAR(n)-Storing characters having pre-determined length.
+  ii> VARCHAR2(n)-Storing characters whose length vary a lot.
+
+* Integral data types
+
+  SQL supports SMALLINT, INTEGER and INT data types that are used for storing whole numbers.  
+
+* Non-Integral data types
+
+  Nonintegral data types have an integer part and a fractional part. Either NUMERIC, DECIMAL
+  or NUMBER data types can be used to store nonintegral numbers.
+  ex:-NUMBER(4,1) (999.1)here 4 is Precision and 1 is Scale 
+  ->Scale is the number of digits allowed after the decimal point. 
+  ->Precision is the total number of significant digits i.e. digits both before and after the decimal point.
+    If Scale is not provided then NUMBER datatype can be used to store integral values.
+
+* Miscellaneous data types
+  
+  For storing date and large objects, SQL supports the following data types:
+  -->DATE :Storing date data where time portion is not required 
+  -->TIMESTAMP: Storing date data with precision up to 1 billionth
+  -->CLOB(Character Large Object):Storing large character based data which can not be stored in VARCHAR2 due to its 4000 bytes size limit. 
+  -->BLOB(Binary Large Object): Storing large binary data like movies, images with size up to 4 GB. 
+
+=>Operators
+* Arithmetic operators
+  -->Addition: + eg:- 4+5
+  -->Subtraction: - eg:-5-4
+  -->Multiplication: * eg:-4*5
+  -->Division:/ eg:- 6/2
+
+* Comparison operators 
+  -->Equal to: = eg:-15=5 false
+  -->Not Equal to: <> eg:- 15<>5 true
+  -->Greater than: > eg:- 15>4 true
+  -->less than: < eg:- 15<4 false
+  -->Greater than equal to : >= eg:- 15>=5 true
+  -->less than equal to: <= eg:- 15<=5 false
+  -->Range: BETWEEN<lower limit> and <upper limit> eg:- Salary BETWEEN 40000 and 50000 
+  -->LIST: IN(List of values) eg:- Gender IN('Male', 'Female')
+  -->String Pattern Match: LIKE eg: Gender LIKE 'B%'
+  -->NUILL Test: IS NULL eg:- Salary IS NULL
+
+* Logical operators
+  -->AND: Return true if both conditions are true eg:- Name='Bhanu' and Gender='Female'
+  -->Or: Return TRUE if any one condition is true eg:- Name='Bhanu' Or Gender='Female'
+  -->NOT: Returns TRUE if following condition is false eg:- Id NOT IN(3,4,7,8)
